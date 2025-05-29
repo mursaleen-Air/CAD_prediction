@@ -1,6 +1,6 @@
 pandas
 numpy
-streamlit
+streamlit==1.45.1
 nltk
 gensim
 scikit-learn
@@ -11,3 +11,5 @@ rank_bm25
 sentence-transformers
 google-generativeai
 pdfplumber
+torch==2.7.0
+torchvision==0.22.0
