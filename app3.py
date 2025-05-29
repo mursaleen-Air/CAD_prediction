@@ -23,7 +23,44 @@ if not st.session_state.logged_in:
 # ✅ If logged in, show the main app and a logout button
 else:
     st.sidebar.success(f"Logged in as {st.session_state.username}")
+    import os
+    import random
 
+
+    def get_random_image_from_folder(folder_path):
+        files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+        if not files:
+            return None, None
+        selected_file = random.choice(files)
+        full_path = os.path.join(folder_path, selected_file)
+        return full_path, selected_file
+
+    st.sidebar.markdown("### 🧠 Download a Random MRI Sample")
+
+    # User selects folder
+    image_type = st.sidebar.selectbox("Choose MRI Type", ["Normal", "Sick"])
+
+    if st.sidebar.button("Show Random Sample"):
+        folders = {
+            "Normal": "images/normal",
+            "Sick": "images/sick"
+        }
+        folder_path = folders[image_type]
+
+        img_path, img_name = get_random_image_from_folder(folder_path)
+        if img_path:
+            st.sidebar.write(f"Random {image_type} MRI Image:")
+            img = Image.open(img_path)
+            st.sidebar.image(img, use_column_width=True)
+            with open(img_path, "rb") as file:
+                st.sidebar.download_button(
+                    label=f"Download {image_type} MRI",
+                    data=file,
+                    file_name=img_name,
+                    mime="image/jpeg"
+                )
+        else:
+            st.sidebar.warning(f"No images found in {image_type} folder.")
     # 🎯 Your main application goes here
     st.title("Main Application")
     # Add more Streamlit widgets or pages here
