@@ -13,3 +13,5 @@ google-generativeai
 pdfplumber
 torch==2.7.0
 torchvision==0.22.0
+xgboost
+joblib
