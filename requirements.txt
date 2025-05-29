@@ -1,0 +1,13 @@
+pandas
+numpy
+streamlit
+nltk
+gensim
+scikit-learn
+python-dotenv
+docx2txt
+requests
+rank_bm25
+sentence-transformers
+google-generativeai
+pdfplumber
