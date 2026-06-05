@@ -11,16 +11,16 @@ from sklearn.preprocessing import StandardScaler
 # --- Login imports (keep if you use login/logout) ---
 from login import login, logout
 
-# 🟡 Initialize session state at the start
+# Initialize session state at the start
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     st.session_state.username = ""
 
-# 🔐 If not logged in, show the login page
+#  If not logged in, show the login page
 if not st.session_state.logged_in:
     login()
 
-# ✅ If logged in, show the main app and a logout button
+#  If logged in, show the main app and a logout button
 else:
     st.sidebar.success(f"Logged in as {st.session_state.username}")
     import os
@@ -35,7 +35,7 @@ else:
         full_path = os.path.join(folder_path, selected_file)
         return full_path, selected_file
 
-    st.sidebar.markdown("### 🧠 Download a Random MRI Sample")
+    st.sidebar.markdown("### Download a Random MRI Sample")
 
     # User selects folder
     image_type = st.sidebar.selectbox("Choose MRI Type", ["Normal", "Sick"])
